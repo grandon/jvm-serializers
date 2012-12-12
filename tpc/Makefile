@@ -14,7 +14,7 @@
 
 # Need 'javac' version 5 or greater.
 JavaC ?= javac
-JavaC_Opt := -Xlint:unchecked
+JavaC_Opt := -Xlint:unchecked -Xlint:deprecation
 
 empty :=
 space := $(empty) $(empty)
@@ -34,8 +34,8 @@ avro_generator ?= java -cp "$(avro_cp)" org.apache.avro.tool.Main
 protostuff_compiler ?= $(wildcard lib/protostuff-compiler-*.jar)
 
 # Default to 'no' because we might not have these tools available.
-Generate_protobuf ?= n
-Generate_thrift ?= n
+Generate_protobuf ?= y
+Generate_thrift ?= y
 
 # Default to 'yes' because the generator tools are included in 'lib/'.
 Generate_activemqprotobuf ?= y
