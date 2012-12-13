@@ -84,9 +84,9 @@
 	<classpathentry kind="lib" path="lib/jackson-module-afterburner-2.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-dataformat-avro-2.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/libthrift-0.9.0.jar"/>
-	<classpathentry kind="lib" path="lib/protobuf-java-2.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/avro-1.7.3.jar"/>
 	<classpathentry kind="lib" path="lib/avro-compiler-1.7.3.jar"/>
 	<classpathentry kind="lib" path="lib/avro-tools-1.7.3.jar"/>
+	<classpathentry kind="lib" path="lib/protobuf-java-2.5.0rc1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
