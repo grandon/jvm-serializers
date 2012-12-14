@@ -147,72 +147,6 @@ public final class MediaContentHolder {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private Image(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              uri_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              bitField0_ |= 0x00000002;
-              title_ = input.readBytes();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              width_ = input.readInt32();
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              height_ = input.readInt32();
-              break;
-            }
-            case 40: {
-              int rawValue = input.readEnum();
-              serializers.protobuf.media.MediaContentHolder.Image.Size value = serializers.protobuf.media.MediaContentHolder.Image.Size.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(5, rawValue);
-              } else {
-                bitField0_ |= 0x00000010;
-                size_ = value;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return serializers.protobuf.media.MediaContentHolder.internal_static_serializers_protobuf_media_Image_descriptor;
@@ -231,7 +165,16 @@ public final class MediaContentHolder {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Image(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -512,90 +455,6 @@ public final class MediaContentHolder {
       height_ = 0;
       size_ = serializers.protobuf.media.MediaContentHolder.Image.Size.SMALL;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      if (!hasUri()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasWidth()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasHeight()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSize()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getUriBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getTitleBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, width_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(4, height_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeEnum(5, size_.getNumber());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getUriBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getTitleBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, width_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, height_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(5, size_.getNumber());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static serializers.protobuf.media.MediaContentHolder.Image parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -763,77 +622,6 @@ public final class MediaContentHolder {
         return result;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serializers.protobuf.media.MediaContentHolder.Image) {
-          return mergeFrom((serializers.protobuf.media.MediaContentHolder.Image)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serializers.protobuf.media.MediaContentHolder.Image other) {
-        if (other == serializers.protobuf.media.MediaContentHolder.Image.getDefaultInstance()) return this;
-        if (other.hasUri()) {
-          bitField0_ |= 0x00000001;
-          uri_ = other.uri_;
-          onChanged();
-        }
-        if (other.hasTitle()) {
-          bitField0_ |= 0x00000002;
-          title_ = other.title_;
-          onChanged();
-        }
-        if (other.hasWidth()) {
-          setWidth(other.getWidth());
-        }
-        if (other.hasHeight()) {
-          setHeight(other.getHeight());
-        }
-        if (other.hasSize()) {
-          setSize(other.getSize());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUri()) {
-          
-          return false;
-        }
-        if (!hasWidth()) {
-          
-          return false;
-        }
-        if (!hasHeight()) {
-          
-          return false;
-        }
-        if (!hasSize()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serializers.protobuf.media.MediaContentHolder.Image parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serializers.protobuf.media.MediaContentHolder.Image) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
       private int bitField0_;
 
       // required string uri = 1;
@@ -1476,108 +1264,6 @@ public final class MediaContentHolder {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private Media(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              uri_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              bitField0_ |= 0x00000002;
-              title_ = input.readBytes();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              width_ = input.readInt32();
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              height_ = input.readInt32();
-              break;
-            }
-            case 42: {
-              bitField0_ |= 0x00000010;
-              format_ = input.readBytes();
-              break;
-            }
-            case 48: {
-              bitField0_ |= 0x00000020;
-              duration_ = input.readInt64();
-              break;
-            }
-            case 56: {
-              bitField0_ |= 0x00000040;
-              size_ = input.readInt64();
-              break;
-            }
-            case 64: {
-              bitField0_ |= 0x00000080;
-              bitrate_ = input.readInt32();
-              break;
-            }
-            case 74: {
-              if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
-                person_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000100;
-              }
-              person_.add(input.readBytes());
-              break;
-            }
-            case 80: {
-              int rawValue = input.readEnum();
-              serializers.protobuf.media.MediaContentHolder.Media.Player value = serializers.protobuf.media.MediaContentHolder.Media.Player.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(10, rawValue);
-              } else {
-                bitField0_ |= 0x00000100;
-                player_ = value;
-              }
-              break;
-            }
-            case 90: {
-              bitField0_ |= 0x00000200;
-              copyright_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
-          person_ = new com.google.protobuf.UnmodifiableLazyStringList(person_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return serializers.protobuf.media.MediaContentHolder.internal_static_serializers_protobuf_media_Media_descriptor;
@@ -1596,7 +1282,16 @@ public final class MediaContentHolder {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Media(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2111,149 +1806,6 @@ public final class MediaContentHolder {
       player_ = serializers.protobuf.media.MediaContentHolder.Media.Player.JAVA;
       copyright_ = "";
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      if (!hasUri()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasWidth()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasHeight()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasFormat()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasDuration()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSize()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPlayer()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getUriBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getTitleBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, width_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(4, height_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getFormatBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeInt64(6, duration_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeInt64(7, size_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeInt32(8, bitrate_);
-      }
-      for (int i = 0; i < person_.size(); i++) {
-        output.writeBytes(9, person_.getByteString(i));
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeEnum(10, player_.getNumber());
-      }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeBytes(11, getCopyrightBytes());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getUriBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getTitleBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, width_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, height_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getFormatBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, duration_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(7, size_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, bitrate_);
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < person_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(person_.getByteString(i));
-        }
-        size += dataSize;
-        size += 1 * getPersonList().size();
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(10, player_.getNumber());
-      }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(11, getCopyrightBytes());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static serializers.protobuf.media.MediaContentHolder.Media parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2459,118 +2011,6 @@ public final class MediaContentHolder {
         return result;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serializers.protobuf.media.MediaContentHolder.Media) {
-          return mergeFrom((serializers.protobuf.media.MediaContentHolder.Media)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serializers.protobuf.media.MediaContentHolder.Media other) {
-        if (other == serializers.protobuf.media.MediaContentHolder.Media.getDefaultInstance()) return this;
-        if (other.hasUri()) {
-          bitField0_ |= 0x00000001;
-          uri_ = other.uri_;
-          onChanged();
-        }
-        if (other.hasTitle()) {
-          bitField0_ |= 0x00000002;
-          title_ = other.title_;
-          onChanged();
-        }
-        if (other.hasWidth()) {
-          setWidth(other.getWidth());
-        }
-        if (other.hasHeight()) {
-          setHeight(other.getHeight());
-        }
-        if (other.hasFormat()) {
-          bitField0_ |= 0x00000010;
-          format_ = other.format_;
-          onChanged();
-        }
-        if (other.hasDuration()) {
-          setDuration(other.getDuration());
-        }
-        if (other.hasSize()) {
-          setSize(other.getSize());
-        }
-        if (other.hasBitrate()) {
-          setBitrate(other.getBitrate());
-        }
-        if (!other.person_.isEmpty()) {
-          if (person_.isEmpty()) {
-            person_ = other.person_;
-            bitField0_ = (bitField0_ & ~0x00000100);
-          } else {
-            ensurePersonIsMutable();
-            person_.addAll(other.person_);
-          }
-          onChanged();
-        }
-        if (other.hasPlayer()) {
-          setPlayer(other.getPlayer());
-        }
-        if (other.hasCopyright()) {
-          bitField0_ |= 0x00000400;
-          copyright_ = other.copyright_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUri()) {
-          
-          return false;
-        }
-        if (!hasWidth()) {
-          
-          return false;
-        }
-        if (!hasHeight()) {
-          
-          return false;
-        }
-        if (!hasFormat()) {
-          
-          return false;
-        }
-        if (!hasDuration()) {
-          
-          return false;
-        }
-        if (!hasSize()) {
-          
-          return false;
-        }
-        if (!hasPlayer()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serializers.protobuf.media.MediaContentHolder.Media parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serializers.protobuf.media.MediaContentHolder.Media) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
       private int bitField0_;
 
       // required string uri = 1;
@@ -3472,65 +2912,6 @@ public final class MediaContentHolder {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private MediaContent(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                image_ = new java.util.ArrayList<serializers.protobuf.media.MediaContentHolder.Image>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              image_.add(input.readMessage(serializers.protobuf.media.MediaContentHolder.Image.PARSER, extensionRegistry));
-              break;
-            }
-            case 18: {
-              serializers.protobuf.media.MediaContentHolder.Media.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                subBuilder = media_.toBuilder();
-              }
-              media_ = input.readMessage(serializers.protobuf.media.MediaContentHolder.Media.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(media_);
-                media_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000001;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          image_ = java.util.Collections.unmodifiableList(image_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return serializers.protobuf.media.MediaContentHolder.internal_static_serializers_protobuf_media_MediaContent_descriptor;
@@ -3549,7 +2930,16 @@ public final class MediaContentHolder {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MediaContent(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3621,67 +3011,6 @@ public final class MediaContentHolder {
       image_ = java.util.Collections.emptyList();
       media_ = serializers.protobuf.media.MediaContentHolder.Media.getDefaultInstance();
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      if (!hasMedia()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      for (int i = 0; i < getImageCount(); i++) {
-        if (!getImage(i).isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (!getMedia().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      for (int i = 0; i < image_.size(); i++) {
-        output.writeMessage(1, image_.get(i));
-      }
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(2, media_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < image_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, image_.get(i));
-      }
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, media_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static serializers.protobuf.media.MediaContentHolder.MediaContent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3850,85 +3179,6 @@ public final class MediaContentHolder {
         return result;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serializers.protobuf.media.MediaContentHolder.MediaContent) {
-          return mergeFrom((serializers.protobuf.media.MediaContentHolder.MediaContent)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serializers.protobuf.media.MediaContentHolder.MediaContent other) {
-        if (other == serializers.protobuf.media.MediaContentHolder.MediaContent.getDefaultInstance()) return this;
-        if (imageBuilder_ == null) {
-          if (!other.image_.isEmpty()) {
-            if (image_.isEmpty()) {
-              image_ = other.image_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureImageIsMutable();
-              image_.addAll(other.image_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.image_.isEmpty()) {
-            if (imageBuilder_.isEmpty()) {
-              imageBuilder_.dispose();
-              imageBuilder_ = null;
-              image_ = other.image_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              imageBuilder_ = 
-                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getImageFieldBuilder() : null;
-            } else {
-              imageBuilder_.addAllMessages(other.image_);
-            }
-          }
-        }
-        if (other.hasMedia()) {
-          mergeMedia(other.getMedia());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasMedia()) {
-          
-          return false;
-        }
-        for (int i = 0; i < getImageCount(); i++) {
-          if (!getImage(i).isInitialized()) {
-            
-            return false;
-          }
-        }
-        if (!getMedia().isInitialized()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serializers.protobuf.media.MediaContentHolder.MediaContent parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serializers.protobuf.media.MediaContentHolder.MediaContent) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
       private int bitField0_;
 
       // repeated .serializers.protobuf.media.Image image = 1;
@@ -4338,7 +3588,7 @@ public final class MediaContentHolder {
       "mage\030\001 \003(\0132!.serializers.protobuf.media." +
       "Image\0220\n\005media\030\002 \002(\0132!.serializers.proto" +
       "buf.media.MediaB2\n\032serializers.protobuf." +
-      "mediaB\022MediaContentHolderH\001"
+      "mediaB\022MediaContentHolderH\002"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

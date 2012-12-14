@@ -4,7 +4,7 @@ package serializers.protobuf.media;
 
 option java_package = "serializers.protobuf.media";
 option java_outer_classname = "MediaContentHolder";
-option optimize_for = SPEED;
+option optimize_for = CODE_SIZE;
 
 message Image {
   required string uri = 1;      //url to the thumbnail
